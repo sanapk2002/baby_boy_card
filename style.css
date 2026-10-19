@@ -263,7 +263,7 @@
     height:100%;
     object-fit:cover;
     display:block;
-    object-position: center;
+    object-position: center top;
 }
   .photo-placeholder{
     font-size:35px;
@@ -281,7 +281,7 @@
 }
 .photo-caption{
     font-family: "Luxurious Script", cursive;
-    font-weight:400;
+    font-weight:600;
     font-size:40px;
     letter-spacing:1.5px;
     color:#94b5ce;
@@ -289,7 +289,7 @@
 }
   .congrats{
     font-size:13px;
-    font-weight:400;
+    font-weight:600;
     line-height:1.5;
     max-width:300px;
     margin:5px auto 2px;
@@ -307,7 +307,7 @@
 }
   .birthdate{
     font-size:12px;
-    font-weight:500;
+    font-weight:700;
     letter-spacing:3px;
     color:#88a8c1;
     margin:0 0 9px;
@@ -315,7 +315,7 @@
 }
   .love{
     font-size:9px;
-    font-weight:400;
+    font-weight:600;
     color:#d18c9d;
     margin:20px 0 8px;
     text-transform:uppercase;
