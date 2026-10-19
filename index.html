@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#dceeff" />
+<link rel="shortcut icon" href="feet.png" type="image/x-icon">
+<title>Congrats Baby Boy</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="scene" aria-label="Baby boy congratulations card">
+  <span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span><span class="sparkle s4">✧</span>
+  <div class="envelope-wrap" id="envelopeWrap">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Tap to open the greeting card">
+      <div class="env-back"></div><div class="letter-peek">A little miracle<span>is on the way to your heart</span></div>
+      <div class="env-left"></div><div class="env-right"></div><div class="env-bottom"></div><div class="env-flap" id="flap"></div><div class="seal">♡</div>
+      <div class="tap-label">tap to open</div>
+    </div>
+  </div>
+
+  <article class="card" id="card" aria-label="Congratulations card" aria-hidden="true">
+    <div class="card-topline">Your special delivery is here al last!</div>
+    <h1>Congratulations!</h1>
+    <p class="congrats">on the arrival of your precious baby boy! To the proud parents</p>
+    <p class="names">Faiza  &  Umair</p>
+    <div class="baby-frame" title="Add a baby photo by replacing the placeholder in the HTML"><img src="photo.jpeg" alt=""></div>
+    <div class="baby-boy">
+      <p class="photo-caption">Baby Boy</p>
+      <img src="feet.png" alt="">
+    </div>
+    
+    
+    <p class="birthdate">sunday    |    18th oct    |    2026</p>
+    <p class="love">you are instantly loved</p>
+    <p class="birthdate">from abdul aziz & family</p>
+    <div class="animals" aria-label="Cute animal picture spaces">
+      <img src="teddy.png" alt="">
+    </div>
+    <button class="back-btn" id="backBtn" type="button">← Close</button>
+  </article>
+  <div class="balloons" id="balloons" aria-hidden="true"></div>
+</main>
+<script>
+  const envelopeWrap = document.getElementById('envelopeWrap');
+  const envelope = document.getElementById('envelope');
+  const flap = document.getElementById('flap');
+  const card = document.getElementById('card');
+  const balloons = document.getElementById('balloons');
+  const backBtn = document.getElementById('backBtn');
+  let opened = false;
+  let balloonTimer;
+
+  function createBalloon() {
+    const balloon = document.createElement('span');
+    const colors = ['blue', 'pink', 'yellow', 'lilac'];
+    balloon.className = 'balloon ' + colors[Math.floor(Math.random() * colors.length)];
+    balloon.style.left = (3 + Math.random() * 90) + '%';
+    balloon.style.setProperty('--duration', (6 + Math.random() * 4) + 's');
+    balloon.style.transform = `scale(${0.7 + Math.random() * .6})`;
+    balloons.appendChild(balloon);
+    setTimeout(() => balloon.remove(), 10500);
+  }
+  function confettiBurst() {
+    const colors = ['#8fc7f0','#f2bfc9','#f3d88f','#c7c5ef','#b7ddc5'];
+    for (let i = 0; i < 34; i++) {
+      const bit = document.createElement('span');
+      bit.className = 'confetti';
+      bit.style.left = Math.random() * 100 + '%';
+      bit.style.background = colors[Math.floor(Math.random() * colors.length)];
+      bit.style.animationDelay = Math.random() * .7 + 's';
+      bit.style.transform = `rotate(${Math.random()*180}deg)`;
+      balloons.appendChild(bit);
+      setTimeout(() => bit.remove(), 4000);
+    }
+  }
+  function openCard() {
+    if (opened) return;
+    opened = true;
+    flap.style.transform = 'rotateX(180deg)';
+    document.querySelector('.seal').style.opacity = '0';
+    setTimeout(() => {
+      envelopeWrap.classList.add('hidden');
+      card.classList.add('open');
+      card.setAttribute('aria-hidden', 'false');
+      confettiBurst();
+      for (let i = 0; i < 9; i++) setTimeout(createBalloon, i * 220);
+      balloonTimer = setInterval(createBalloon, 1000);
+    }, 320);
+  }
+  function closeCard() {
+    opened = false;
+    clearInterval(balloonTimer);
+    card.classList.remove('open');
+    card.setAttribute('aria-hidden', 'true');
+    setTimeout(() => {
+      envelopeWrap.classList.remove('hidden');
+      flap.style.transform = '';
+      document.querySelector('.seal').style.opacity = '';
+      balloons.innerHTML = '';
+    }, 250);
+  }
+  envelope.addEventListener('click', openCard);
+  envelope.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openCard(); }
+  });
+  backBtn.addEventListener('click', closeCard);
+</script>
+</body>
+</html>
