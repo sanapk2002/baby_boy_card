@@ -254,8 +254,6 @@
     border-radius:50%;
     background:linear-gradient(145deg,#e4f3ff,#f8e9e8);
     box-shadow:0 0 0 2px #c6e2f5,0 7px 17px #6c99b522;
-    display:grid;
-    place-items:center;
     overflow:hidden;
 }
   .baby-frame img{
